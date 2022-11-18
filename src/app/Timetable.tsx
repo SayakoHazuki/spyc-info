@@ -1,15 +1,21 @@
-import { Card, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Card,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import React, { ReactElement, useEffect } from "react";
 import "../resources/styles/Timetable.c.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  solid,
-  regular,
-  brands,
-  icon,
-} from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   solid,
+//   regular,
+//   brands,
+//   icon,
+// } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 
 async function fetchAPI(cls: string) {
   const url = "https://iot.spyc.hk/timetable?cl=" + cls;
@@ -19,7 +25,7 @@ async function fetchAPI(cls: string) {
 
 async function getLessonList(class_: string, day: string) {
   console.log(day);
-  day = day.replace("/", "A");
+  if (day === "/") return [];
   const lessonsJSON = await fetchAPI(class_);
   if (!(day in lessonsJSON)) return [];
   return lessonsJSON[day] as {
@@ -29,15 +35,18 @@ async function getLessonList(class_: string, day: string) {
 }
 
 async function getDayOfCycle(d: Date) {
-  console.log(d)
+  console.log(d);
   const now = new Date();
   //@ts-ignore
-  const date = (d._d as Date).toDateString();
+  const date = (d._d as Date)?.toDateString() ?? now.toDateString();
   const url = "https://iot.spyc.hk/cyclecal";
   const response = await fetch(url);
   const data = await response.json();
   const dayOfCycle = data[date];
-  return dayOfCycle;
+  /* n-th occurence of the day in data */
+  const n = Object.keys(data).filter((k) => data[k] === dayOfCycle).length;
+  const id = `${n}${dayOfCycle}`;
+  return { day: dayOfCycle, id };
 }
 
 export const SectionItem = (props: { subject: string; venue: string }) => {
@@ -50,8 +59,12 @@ export const SectionItem = (props: { subject: string; venue: string }) => {
   );
 };
 
-export const Timetable = (props: { date: Date; setDate: any }) => {
-  const [icon, setIcon] = React.useState<ReactElement|null>(null);
+export const Timetable = (props: {
+  date: Date;
+  setDate: any;
+  setCycleDayStr: any;
+}) => {
+  const [icon, setIcon] = React.useState<ReactElement | null>(null);
   const times = ["8:40", "9:35", "10:50", "11:45", "13:50", "14:45"];
   const [lessons, setLessons] = React.useState<
     { subject: string; venue: string }[]
@@ -60,13 +73,19 @@ export const Timetable = (props: { date: Date; setDate: any }) => {
     subject: string;
     venue: string;
     index: number;
-  }) => (
-    <div className="tt-item tt-border">
-      <div className="tt-item tt-time"> {times[props.index]}</div>
-      <div className="tt-item tt-subject">{props.subject}</div>
-      <div className="tt-item tt-venue">{props.venue}</div>
-    </div>
-  );
+  }) => {
+    return props.subject === "X" ? (
+      <div className="tt-item tt-border">
+        <div className="tt-item tt-subject">It's a school holiday</div>
+      </div>
+    ) : (
+      <div className="tt-item tt-border">
+        <div className="tt-item tt-time"> {times[props.index]}</div>
+        <div className="tt-item tt-subject">{props.subject}</div>
+        <div className="tt-item tt-venue">{props.venue}</div>
+      </div>
+    );
+  };
   const [cls, setCls] = React.useState("1A");
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -74,14 +93,28 @@ export const Timetable = (props: { date: Date; setDate: any }) => {
   };
 
   useEffect(() => {
-    setIcon(<FontAwesomeIcon icon={["fas", "spinner"]} spin />);
+    setIcon(<CircularProgress />);
     setLessons([]);
     /* update lesson list */
     (async () => {
-      const dayOfCycle = await getDayOfCycle(props.date);
+      const { day, id } = await getDayOfCycle(props.date ?? new Date());
+      const dayOfCycle = day;
+      /* Cycle (1st char of id) Day (2nd char of id) */
+      if (dayOfCycle === "/") {
+        props.setCycleDayStr("School holiday");
+      } else {
+        props.setCycleDayStr(
+          `Cycle ${id.replace(/[A-Z]/g, "")} Day ${id.replace(/[0-9]/g, "")}`
+        );
+      }
       const lessons = await getLessonList(cls, dayOfCycle);
       console.log(lessons);
-      setLessons(lessons);
+      if (!lessons.length) {
+        setLessons([{ subject: "X", venue: "" }]);
+      } else {
+        setLessons(lessons);
+      }
+      setIcon(null);
     })();
   }, [cls, props.date]);
 

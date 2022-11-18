@@ -7,4 +7,22 @@
   position: relative;
   z-index: 100;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 3em;
+}
+
+.header-nav-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-top: 0.6em;
+  margin-bottom: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgb(0, 93, 36);
+  font-weight: #369f37;
+  margin-left: 1em;
 }

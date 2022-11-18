@@ -33,13 +33,17 @@ export const MuiCalendar = (props: { d: Date; sd: any }) => {
   );
 };
 
-export const Calendar_ = (props: { date: Date; setDate: any }) => {
+export const Calendar_ = (props: {
+  date: Date;
+  setDate: any;
+  cycleDayStr: any;
+}) => {
   return (
     <div className="calendarwrapper">
       <Card>
         <MuiCalendar d={props.date} sd={props.setDate}></MuiCalendar>
         <Divider></Divider>
-        <div className="ws-card-title">Cycle 1 Day A</div>
+        <div className="ws-card-title">{props.cycleDayStr}</div>
       </Card>
     </div>
   );

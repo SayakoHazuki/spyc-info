@@ -1,0 +1,10 @@
+.header-nav {
+  background-color: #fff;
+  border-bottom: 1px solid #e1e1e1;
+  flex-basis: 64px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}

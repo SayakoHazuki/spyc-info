@@ -1,0 +1,48 @@
+.beta-container {
+  max-height: calc(100vh - 4.1em - 74px);
+  overflow-y: auto;
+}
+
+.bus-route-eta {
+  display: flex;
+}
+
+.bus-route-eta-route {
+  flex-basis: 0;
+  flex-grow: 2;
+  flex-shrink: 0;
+  background-color: #e1e1e1;
+  color: #000;
+  font-weight: 500;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0.1em;
+  padding: 0.1em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bus-route-eta-destination {
+  flex-basis: 0;
+  flex-grow: 4;
+  flex-shrink: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bus-route-eta-eta {
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+}

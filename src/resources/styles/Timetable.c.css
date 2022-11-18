@@ -1,0 +1,61 @@
+.timetable-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.timetable-wrapper > * {
+  min-height: 1em;
+  padding: 5px;
+}
+
+.tt-item.tt-border {
+  margin: 3px 0;
+  border: 2px solid #e1e1e1;
+  padding: 0.3em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-item.tt-time {
+  flex-basis: 0;
+  flex-grow: 3;
+  flex-shrink: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+  overflow: hidden;
+}
+
+.tt-item.tt-subject {
+  flex-basis: 0;
+  flex-grow: 3;
+  flex-shrink: 0;
+  background-color: #e1e1e1;
+  color: #000;
+  font-weight: 500;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 0.3em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tt-item.tt-venue {
+  flex-basis: 0;
+  flex-grow: 6;
+  flex-shrink: 1;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+  overflow: hidden;
+}

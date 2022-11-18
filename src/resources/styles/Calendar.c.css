@@ -1,0 +1,155 @@
+.asg-cat {
+  flex-direction: column;
+  margin: 0.5em 5px;
+  align-items: stretch  ;
+}
+
+.asg-cat-title {
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-top: 0.6em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.asg-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  margin: 3px 5px;
+  border: 2px solid #e1e1e1;
+  padding: 0.3em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.asg-item-class {
+  flex-basis: 0;
+  flex-grow: 3;
+  background-color: #e1e1e1;
+  color: #000;
+  font-weight: 500;
+  font-size: 0.8em;
+  text-align: center;
+  padding: 0.3em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.asg-item-title {
+  flex-basis: 0;
+  flex-grow: 6;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+}
+
+.asg-item-subtitle {
+  flex-basis: 0;
+  flex-grow: 2;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0.5em;
+}
+
+.asg-item-subtitle[near] {
+    color: #ff9800;
+}
+
+.asg-item-subtitle[late] {
+  color: red;
+}
+
+/* .asg-item-text {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 0.6em;
+    margin-bottom: 0.5em;
+} */
+
+/* .asg-item-text > a {
+    color: #000;
+}
+
+.asg-item-text > a:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited {
+    color: #000;
+}
+
+.asg-item-text > a:active {
+    color: #000;
+}
+
+.asg-item-text > a:visited:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:active:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:link {
+    color: #000;
+}
+
+.asg-item-text > a:link:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited:active {
+    color: #000;
+}
+
+.asg-item-text > a:link:active {
+    color: #000;
+}
+
+.asg-item-text > a:visited:active:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:link:active:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited:link {
+    color: #000;
+}
+
+.asg-item-text > a:visited:link:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited:link:active {
+    color: #000;
+}
+
+.asg-item-text > a:visited:link:active:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited:link:visited {
+    color: #000;
+}
+
+.asg-item-text > a:visited:link:visited:hover {
+    text-decoration: none;
+}
+
+.asg-item-text > a:visited:link:visited:active {
+    color: #000;
+}
+
+.asg-item-text > a:visited:link:visited:active:hover {
+    text-decoration: none;    
+} */

@@ -84,6 +84,9 @@ export const BusETAs = () => {
       setBusETAs(tempBusETAs);
     };
     fetchAllBusETAs();
+    setInterval(() => {
+      fetchAllBusETAs();
+    }, 1000 * 60);
   });
 
   return (

@@ -87,7 +87,7 @@ export const BusETAs = () => {
     setInterval(() => {
       fetchAllBusETAs();
     }, 1000 * 60);
-  });
+  }, []);
 
   return (
     <div className="beta-wrapper">

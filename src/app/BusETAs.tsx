@@ -33,7 +33,7 @@ const BusRouteEta = (props: IBusRouteEta) => {
       <div className="bus-route-eta-route">{route}</div>
       <div className="bus-route-eta-destination">{destination}</div>
       <div className="bus-route-eta-eta">
-        {eta <= 120 && eta >= -1 ? eta.toString().replace("-1", "-") : "/"}
+        {eta <= 120 && eta >= -1 ? (eta + 1).toString().replace("0", "-") : "/"}
       </div>
     </div>
   );
@@ -46,7 +46,7 @@ function getEtaMinutes(eta: Date) {
 }
 
 export const BusETAs = () => {
-  const [cycles, setCycles] = useState<number>(0);
+  // const [cycles, setCycles] = useState<number>(0);
   const [busETAs, setBusETAs] = useState<IBusRouteEta[]>([]);
 
   useEffect(() => {
@@ -85,12 +85,12 @@ export const BusETAs = () => {
       setBusETAs(tempBusETAs);
     };
     fetchAllBusETAs();
-  }, [cycles]);
-
-  /** add cycle every 1 min */
-  setInterval(() => {
-    setCycles(cycles + 1);
-  }, 6000);
+    
+    const interval = setInterval(() => fetchAllBusETAs(), 6000)
+    return () => {
+      clearInterval(interval);
+    }
+  });
 
   return (
     <div className="beta-wrapper">

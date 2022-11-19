@@ -1,3 +1,7 @@
+.beta-wrapper {
+  margin: 1em;
+}
+
 .beta-container {
   max-height: calc(100vh - 4.1em - 74px);
   overflow-y: auto;

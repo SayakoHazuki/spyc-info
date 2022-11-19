@@ -33,7 +33,7 @@ const BusRouteEta = (props: IBusRouteEta) => {
       <div className="bus-route-eta-route">{route}</div>
       <div className="bus-route-eta-destination">{destination}</div>
       <div className="bus-route-eta-eta">
-        {eta <= 120 && eta >= -1 ? (eta + 1).toString().replace("0", "-") : "/"}
+        {eta <= 120 && eta >= -1 ? (eta + 1).toString().replace(/^0$/g, "-") : "/"}
       </div>
     </div>
   );

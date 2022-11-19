@@ -46,7 +46,6 @@ function getEtaMinutes(eta: Date) {
 }
 
 export const BusETAs = () => {
-  // const [cycles, setCycles] = useState<number>(0);
   const [busETAs, setBusETAs] = useState<IBusRouteEta[]>([]);
 
   useEffect(() => {
@@ -85,11 +84,6 @@ export const BusETAs = () => {
       setBusETAs(tempBusETAs);
     };
     fetchAllBusETAs();
-    
-    const interval = setInterval(() => fetchAllBusETAs(), 6000)
-    return () => {
-      clearInterval(interval);
-    }
   });
 
   return (

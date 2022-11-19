@@ -1,5 +1,5 @@
-.beta-wrapper {
-  margin: 1em;
+.beta-wrapper > * {
+  padding: 1em;
 }
 
 .beta-container {
